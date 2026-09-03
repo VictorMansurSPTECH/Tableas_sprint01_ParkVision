@@ -28,3 +28,11 @@ id_vaga int primary key auto_increment,
 numero_vaga int not null,
 status_vaga boolean
 );
+
+INSERT INTO usuarios (nome, sobrenome, data_nasc, telefone, status_cliente, cnpj) VALUES 
+('Carlos', 'Silva', '1985-04-12', '11999998888', 1, NULL),
+('Ana', 'Oliveira', '1992-08-23', '11988887777', 1, '12345678000199'),
+('Bruno', 'Santos', '1978-11-02', '21977776666', 0, NULL),
+('Mariana', 'Costa', '2000-01-15', '31966665555', 1, '98765432000188'),
+('Ricardo', 'Almeida', NULL, '11955554444', 1, NULL); -- data_nasc como NULL (não informada)
+
