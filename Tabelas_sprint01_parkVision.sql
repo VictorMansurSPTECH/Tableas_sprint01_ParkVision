@@ -1,5 +1,4 @@
 create database BD_projetoV1_PI;
-
 use BD_projetoV1_PI;
 
 create table usuarios(
@@ -45,14 +44,15 @@ INSERT INTO estacionamento (qtd_vagas, cep, tamanho, tipo_estacionamento) VALUES
 (35, '06006-300', 410.2500, 'aberto');
 
 INSERT INTO vaga (numero_vaga, status_vaga) VALUES 
-(101, 1), 
-(102, 0), 
-(103, 1),
-(104, 0),
-(201, 1),
-(202, 1),
-(203, 0);
-
-
-select * from usuarios ;
-
+(101, 1), (102, 0), (103, 1),(104, 0),(201, 1),(202, 1),(203, 0);
+SELECT 
+    concat('consulta de Perfil de : ',nome, ' ', sobrenome) AS 'Nome:',
+    concat(telefone) as 'telefone:',
+    concat(data_cadastro) as 'Data de instalação:',
+    concat(cnpj) as 'CNPJ:',
+   case
+		when status_cliente = 1 then 'Cliente Ativo'
+        when status_cliente = 0 then 'Cliente inativo'
+   end as 'Status'
+FROM usuarios
+WHERE id_usuario = 2;
