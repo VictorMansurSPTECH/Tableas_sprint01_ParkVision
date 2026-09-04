@@ -72,5 +72,3 @@ FROM estacionamento WHERE id_estacionamento = 1;
 select * from vaga;
 select * from estacionamento;
 select * from usuarios;
-
-
