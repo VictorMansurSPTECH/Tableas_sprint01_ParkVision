@@ -14,10 +14,12 @@ senha VARCHAR(30) NOT null,
 data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
 status_cliente  VARCHAR(120), -- modificar pois status pode mudar com o tempo
 CONSTRAINT CHK_status CHECK(status_cliente IN("ativo","inativo","análise","manutenção")),
-cnpj CHAR(14) NULL, -- CPF CEO
-CPF CHAR(11),
+cnpj CHAR(14) NULL, 
+CPF CHAR(11), -- CPF CEO
 CONSTRAINT CHK_cnpj_ou_cpf CHECK(cpf IS NOT NULL OR cnpj IS NOT NULL)
 );
+ALTER TABLE usuarios MODIFY COLUMN CPF VARCHAR(15);
+
 SELECT 
     CONCAT('consulta de Perfil de : ',nome, ' ', sobrenome) AS 'Nome:',
     CONCAT(data_nasc) AS 'Data de nascimento',
@@ -32,7 +34,9 @@ SELECT
         WHEN status_cliente = 'em Processo' THEN 'Cliente em processo de migração'
    END AS 'Status'
 FROM usuarios
-WHERE id_usuario = 2;
+WHERE id_usuario = 3;
+
+select * from usuarios;
 
 CREATE TABLE estacionamento(
 id_estacionamento INT PRIMARY KEY AUTO_INCREMENT,
@@ -106,6 +110,8 @@ INSERT INTO usuarios (nome, sobrenome, data_nasc, telefone, email, senha, status
 ('Carlos', 'Eduardo', '1990-05-15', '(11) 98765-4321', 'carlos@email.com', 'senha123', 'ativo', NULL, '12345678901'),
 ('Empresa', 'Estacione', '1985-10-20', '(11) 3333-4444', 'contato@estacione.com', 'senha456', 'análise', '12345678000199', NULL);
 
+INSERT INTO usuarios (nome, sobrenome, data_nasc, telefone, email, senha, status_cliente, cnpj, cpf) VALUES
+('Gustavo','Mansur de Oliveira','1995-04-18','11 98364529','gustavo@gmail.com','12345','análise',null,'70126806012');
 -- 2. ESTACIONAMENTO
 INSERT INTO estacionamento (qtd_vagas, cep, tamanho, tipo_estacionamento, preco_inicial) VALUES
 (50, '01001-000', 250.50, 'aberto', 12.00),
